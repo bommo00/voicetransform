@@ -217,7 +217,7 @@ def main(page: ft.Page):
 
 if __name__ == '__main__':
     try:
-        ft.app(target=main)
+        ft.app(target=main, view=ft.AppView.WEB_BROWSER)
     finally:
         global key
         if key:
