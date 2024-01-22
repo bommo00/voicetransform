@@ -106,6 +106,9 @@ async def main(page: ft.Page):
     async def download_voice(_):
         await page.launch_url_async(url)
 
+    async def github(_):
+        await page.launch_url_async('https://github.com/bommo00/voicetransform')
+
     # Generate audio and change the GUI from the response
     async def transform(_):
         # Play the audio by button
@@ -157,7 +160,7 @@ async def main(page: ft.Page):
                 ),
                     ft.Text('フレームワークの制約により、ウェブバージョンでは音声の再生機能が無効化されています'),
                     ft.TextButton('音声再生機能をつけているDesktop APP ver. はこちら： https://github.com/bommo00/voicetransform',
-                                  on_click=lambda _: page.launch_url_async('https://github.com/bommo00/voicetransform'))
+                                  on_click=github)
                 )
             else:
                 # Change the audio
