@@ -153,14 +153,17 @@ async def main(page: ft.Page):
                                             on_click=play_audio)
                 await page.add_async(ft.Row(
                     [
-                     ft.IconButton(ft.icons.DOWNLOADING_ROUNDED, icon_size=50, icon_color=ft.colors.WHITE,
-                                   on_click=download_voice),
-                     ],
+                        ft.IconButton(ft.icons.DOWNLOADING_ROUNDED, icon_size=50, icon_color=ft.colors.WHITE,
+                                      on_click=download_voice),
+                    ],
                     alignment=ft.MainAxisAlignment.START,
-                ),
+                ), ft.Row([
                     ft.Text('フレームワークの制約により、ウェブバージョンでは音声の再生機能が無効化されています'),
-                    ft.TextButton('音声再生機能をつけているDesktop APP ver. はこちら： https://github.com/bommo00/voicetransform',
-                                  on_click=github)
+                    ft.TextButton(
+                        '音声再生機能をつけているDesktop APP ver. はこちら： https://github.com/bommo00/voicetransform',
+                        on_click=github)
+                ],
+                    alignment=ft.MainAxisAlignment.START, )
                 )
             else:
                 # Change the audio
@@ -213,7 +216,7 @@ async def main(page: ft.Page):
                            selected_icon_color=ft.colors.WHITE, on_click=transform),
              ],
             vertical_alignment=ft.CrossAxisAlignment.END,
-            alignment=ft.MainAxisAlignment.START,
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         )
         ,
     )
@@ -221,7 +224,6 @@ async def main(page: ft.Page):
     # initialize audio
     global audio
     audio = None
-
 
 
 app = flet_fastapi.app(main)
