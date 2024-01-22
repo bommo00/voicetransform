@@ -83,11 +83,11 @@ def reading(text, vo):
 
 
 # Delete the temp file when the user closes the page
-def delete_file_from_s3(key):
-    try:
-        s3_client.delete_object(Bucket=bucket, Key=key)
-    except NoCredentialsError:
-        return None
+# def delete_file_from_s3(key):
+#     try:
+#         s3_client.delete_object(Bucket=bucket, Key=key)
+#     except NoCredentialsError:
+#         return None
 
 
 # Main page building
@@ -148,13 +148,17 @@ async def main(page: ft.Page):
                 page.overlay.append(audio)
                 play_button = ft.IconButton(ft.icons.PLAY_ARROW, icon_size=50, icon_color=ft.colors.WHITE, data=0,
                                             on_click=play_audio)
-                page.controls.append(ft.Row(
-                    [play_button,
+                page.add(ft.Row(
+                    [
                      ft.IconButton(ft.icons.DOWNLOADING_ROUNDED, icon_size=50, icon_color=ft.colors.WHITE,
                                    on_click=download_voice),
                      ],
                     alignment=ft.MainAxisAlignment.START,
-                ))
+                ),
+                    ft.Text('フレームワークの制約により、ウェブバージョンでは音声の再生機能が無効化されています'),
+                    ft.TextButton('音声再生機能をつけているDesktop APP ver. はこちら： https://github.com/bommo00/voicetransform',
+                                  on_click=lambda _: page.launch_url_async('https://github.com/bommo00/voicetransform'))
+                )
             else:
                 # Change the audio
                 page.overlay.append(audio)
