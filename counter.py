@@ -148,7 +148,7 @@ async def main(page: ft.Page):
                 page.overlay.append(audio)
                 play_button = ft.IconButton(ft.icons.PLAY_ARROW, icon_size=50, icon_color=ft.colors.WHITE, data=0,
                                             on_click=play_audio)
-                page.add_async(ft.Row(
+                await page.add_async(ft.Row(
                     [
                      ft.IconButton(ft.icons.DOWNLOADING_ROUNDED, icon_size=50, icon_color=ft.colors.WHITE,
                                    on_click=download_voice),
